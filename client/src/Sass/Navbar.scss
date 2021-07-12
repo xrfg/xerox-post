@@ -1,0 +1,19 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  background-color: yellowgreen;
+  display: flex;
+  list-style-type: none;
+
+  transition: background-color 1s ease-in-out;
+}
+
+.navbar li {
+  padding: 1rem;
+}
+
+.navAni {
+  background-color: blue;
+}

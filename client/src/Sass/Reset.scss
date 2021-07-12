@@ -1,0 +1,89 @@
+$website-blue: rgb(108, 196, 255);
+$website-green: rgb(97, 161, 0);
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+/* html {
+  height: -webkit-fill-available;
+} */
+
+body {
+  background-color: khaki;
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  color: #444;
+}
+
+.content-container {
+  min-width: 30rem;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.page {
+  position: relative;
+  // min-height: 100vh;
+  /*   min-height: -webkit-fill-available; */
+  // width: 100vw;
+  background-color: rgb(255, 255, 255);
+  // display: flex;
+  // justify-content: center;
+}
+
+.bg1 {
+  background-image: linear-gradient(hotpink, white);
+}
+
+.bg2 {
+  background-image: linear-gradient(white, #a6ffb9);
+}
+
+.bg3 {
+  background-image: linear-gradient(rgb(255, 227, 175), rgb(255, 244, 233));
+}
+
+.bg4 {
+  background-image: linear-gradient(rgb(252, 229, 180), rgb(196, 215, 245));
+}
+
+.bg5 {
+  background-image: linear-gradient(rgb(108, 196, 255), rgba(203, 255, 187, 1));
+}
+
+.bg6 {
+  background-image: linear-gradient(
+    rgba(108, 196, 255, 0.5),
+    rgba(203, 255, 187, 0.5)
+  );
+}
+
+.bg7 {
+  background-image: linear-gradient(rgba(255, 105, 180, 0), #a6ffb9);
+}
+
+.bg8 {
+  background-image: linear-gradient(white, rgb(108, 196, 255));
+}
+
+/* @media (max-width: 700px) {
+  .page {
+    min-height: -webkit-fill-available;
+  }
+} */

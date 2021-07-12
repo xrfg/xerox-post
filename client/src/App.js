@@ -8,12 +8,13 @@ import Login from "./Components/Login";
 import Footer from "./Components/Footer";
 import Posts from "./Components/Posts";
 import About from "./Components/About";
+import "./Sass/Reset.scss";
 
 function App() {
   return (
     <Container>
       <BrowserRouter>
-        <div className="App">
+        <div className="App page">
           <Navbar />
 
           <Switch>

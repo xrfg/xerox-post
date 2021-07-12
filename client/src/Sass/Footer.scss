@@ -1,0 +1,15 @@
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.footerList {
+  display: flex;
+  list-style-type: none;
+  background-color: yellowgreen;
+  padding: 1rem;
+}
+
+.footerList li {
+  padding: 1rem;
+}
