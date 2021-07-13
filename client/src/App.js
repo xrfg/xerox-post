@@ -7,6 +7,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Footer from "./Components/Footer";
 import Posts from "./Components/Posts";
+import Post from "./Components/Post";
 import About from "./Components/About";
 import "./Sass/Reset.scss";
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/posts" component={Posts} />
+            <Route path="/post" component={Post} />
             <Route path="/about" component={About} />
           </Switch>
 

@@ -1,0 +1,30 @@
+.loginResPage {
+  width: 100vw;
+  height: calc(100vh - 6rem); // size of nav (6rem)
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signupHeader {
+  text-align: center;
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.signupInput {
+  border: 1px solid grey;
+  padding: 1rem;
+  width: 20rem;
+  margin-bottom: 0.8rem;
+}
+
+.signupBtn {
+  width: 22rem;
+}

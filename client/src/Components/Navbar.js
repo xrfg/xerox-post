@@ -22,7 +22,10 @@ export default function Navbar() {
           <li>About</li>
         </Link>
         <Link to="/posts">
-          <li>Posts</li>
+          <li>All posts</li>
+        </Link>
+        <Link to="/post">
+          <li>Post</li>
         </Link>
         <Link to="/login">
           <li>Login</li>
