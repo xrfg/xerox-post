@@ -7,14 +7,18 @@ export default function Register(props) {
   const signupForm = (e) => {
     e.preventDefault();
 
-    /* const user = {
-      firstname: e.target.elements["firstname"].value,
-      lastname: e.target.elements["lastname"].value,
-      email: e.target.elements["email"].value,
-      password: e.target.elements["password"].value,
+    const user = {
+      username: e.target.username.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      confirmPassword: e.target.confirmPassword.value,
     };
-    // sending post request to express-server
-    fetch("http://localhost:4000/api/v1/users", {
+
+    console.log("sign up data ==>", user);
+
+    // post req ==> http://localhost:5000/api/v1/register
+
+    fetch("http://localhost:5000/api/v1/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
@@ -27,7 +31,7 @@ export default function Register(props) {
         } else {
           console.log(result.message);
         }
-      }); */
+      });
   };
 
   return (
@@ -39,16 +43,8 @@ export default function Register(props) {
             <input
               className="signupInput"
               type="text"
-              name="firstname"
-              placeholder="Enter First Name"
-              required
-            />
-
-            <input
-              type="text"
-              className="signupInput"
-              name="lastname"
-              placeholder="Enter Last Name"
+              name="username"
+              placeholder="Enter Username"
               required
             />
 
@@ -66,6 +62,14 @@ export default function Register(props) {
               type="password"
               name="password"
               placeholder="Enter Password"
+              required
+            />
+
+            <input
+              className="signupInput"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
               required
             />
             <button className="signupBtn" type="submit">

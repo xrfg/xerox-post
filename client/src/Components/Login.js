@@ -2,20 +2,24 @@ import React, { useContext } from "react";
 import MyContext from "../context/MyContext";
 import "../Sass/Login.scss";
 
-export default function Login() {
+export default function Login(props) {
   const { userEmail } = useContext(MyContext);
   const loginForm = (e) => {
     e.preventDefault();
-    /* let User = {
-      email: e.target.elements["email"].value,
-      password: e.target.elements["password"].value,
+    const user = {
+      email: e.target.email.value,
+      password: e.target.password.value,
     };
 
+    console.log("sign in data ==>", user);
+
+    // POST req ==> http://localhost:5000/api/v1/login
+
     // sending post request on /users/login
-    fetch("http://localhost:4000/api/v1/users/login", {
+    fetch("http://localhost:5000/api/v1/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(User),
+      body: JSON.stringify(user),
     })
       .then((res) => {
         let token = res.headers.get("x-auth");
@@ -24,15 +28,15 @@ export default function Login() {
       })
       .then((result) => {
         if (result.success) {
-          const info = result.data;
-          console.log(info);
-          setUser(info);
-          setIsLogin(true);
+          console.log(result.data);
+          localStorage.setItem("userId", result.data.id);
+          window.location.reload();
+          props.history.push("/post");
         } else {
           console.log(result.message);
         }
-        window.location.replace("/movies");
-      }); */
+        // window.location.replace("/movies");
+      });
   };
   return (
     <div className="loginResPage">

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../Sass/Navbar.scss";
 
 export default function Navbar() {
+  const history = useHistory();
+
   const [navAni, setNavAni] = useState(false);
 
   useEffect(() => {
@@ -27,9 +29,29 @@ export default function Navbar() {
         <Link to="/post">
           <li>Post</li>
         </Link>
-        <Link to="/login">
-          <li>Login</li>
-        </Link>
+        {localStorage.getItem("x-auth") ? (
+          <>
+            <Link to="/login">
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  history.push("/");
+                  console.log("user logged out");
+                  window.location.reload();
+                }}
+                className="navBtn"
+              >
+                <span>Log out</span>
+              </button>
+            </Link>
+          </>
+        ) : (
+          <Link to="/login">
+            <button className="navBtn">
+              <span>Log in</span>
+            </button>
+          </Link>
+        )}
         <Link to="/register">
           <li>Register</li>
         </Link>

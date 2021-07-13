@@ -3,6 +3,7 @@ const env = require("./config/env");
 const port = env.port;
 const cors = require("cors");
 
+const userRoutes = require("./routes/userRoutes");
 require("./mongooseConnection");
 const app = express();
 
@@ -11,7 +12,8 @@ app.use(cors({ origin: "*", exposedHeaders: "x-auth" }));
 
 app.use(express.json());
 
-// app.use("/users", userRoutes);
+app.use("/api/v1/users", userRoutes);
+// http://localhost:5000/api/v1/login
 
 // app.use("/posts", auth, postRoutes);
 
