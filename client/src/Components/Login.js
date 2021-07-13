@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import MyContext from "../context/MyContext";
 import "../Sass/Login.scss";
 
@@ -30,8 +31,8 @@ export default function Login(props) {
         if (result.success) {
           console.log(result.data);
           localStorage.setItem("userId", result.data.id);
-          window.location.reload();
           props.history.push("/post");
+          window.location.reload();
         } else {
           console.log(result.message);
         }
@@ -62,6 +63,12 @@ export default function Login(props) {
             <span>Login</span>
           </button>
         </form>
+        <h4>Don't have an account yet?</h4>
+        <Link to="/register">
+          <button>
+            <span>Register</span>
+          </button>
+        </Link>
       </div>
     </div>
   );

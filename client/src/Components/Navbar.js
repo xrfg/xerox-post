@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import "../Sass/Navbar.scss";
 
 export default function Navbar() {
@@ -9,52 +9,63 @@ export default function Navbar() {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      window.scrollY > 100 ? setNavAni(true) : setNavAni(false);
+      window.scrollY > 60 ? setNavAni(true) : setNavAni(false);
     });
     return () => window.removeEventListener("scroll");
   }, []);
 
   return (
     <nav>
-      <ul className={`navbar ${navAni && "navAni"}`}>
-        <Link to="/">
-          <li>Home</li>
-        </Link>
-        <Link to="/about">
-          <li>About</li>
-        </Link>
-        <Link to="/posts">
-          <li>All posts</li>
-        </Link>
-        <Link to="/post">
-          <li>Post</li>
-        </Link>
+      <ul className={`navbar ${navAni && "navAni"} `}>
+        <div class="navBtnBox navBtnBox__home">
+          <button className="navBtn">
+            <NavLink activeClassName="activeNavLink" exact to="/">
+              <span>Home</span>
+            </NavLink>
+          </button>
+        </div>
+
         {localStorage.getItem("x-auth") ? (
           <>
-            <Link to="/login">
+            <div class="navBtnBox">
+              <button className="navBtn">
+                <NavLink activeClassName="activeNavLink" to="/posts">
+                  <span>All Posts</span>
+                </NavLink>
+              </button>
+            </div>
+            <div class="navBtnBox">
+              <button className="navBtn">
+                <NavLink activeClassName="activeNavLink" to="/post">
+                  <span>Post</span>
+                </NavLink>
+              </button>
+            </div>
+            <div class="navBtnBox">
               <button
+                className="navBtn"
                 onClick={() => {
                   localStorage.clear();
                   history.push("/");
                   console.log("user logged out");
                   window.location.reload();
                 }}
-                className="navBtn"
               >
-                <span>Log out</span>
+                <NavLink activeClassName="activeNavLink" to="/login">
+                  <span>Log out</span>
+                </NavLink>
               </button>
-            </Link>
+            </div>
           </>
         ) : (
-          <Link to="/login">
+          <div class="navBtnBox">
             <button className="navBtn">
-              <span>Log in</span>
+              <NavLink activeClassName="activeNavLink" to="/login">
+                <span>Log in</span>
+              </NavLink>
             </button>
-          </Link>
+          </div>
         )}
-        <Link to="/register">
-          <li>Register</li>
-        </Link>
       </ul>
     </nav>
   );

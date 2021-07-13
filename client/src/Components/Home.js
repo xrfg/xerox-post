@@ -15,9 +15,12 @@ export default function Home(props) {
   }
   return (
     <div className="homepage">
-      <img className="blobImg" src={Blob1} alt="Blob log" />
-      <img className="blobImg blob2" src={Blob2} alt="Blob log" />
-      <img className="blobImg blob3" src={Blob3} alt="Blob log" />
+      <div className="blobsBox">
+        <img className="blobImg" src={Blob1} alt="Blob log" />
+        <img className="blobImg blob2" src={Blob2} alt="Blob log" />
+        <img className="blobImg blob3" src={Blob3} alt="Blob log" />
+      </div>
+
       <div className="fancyborder"></div>
       <div className="hero">
         <h1>blob posting</h1>

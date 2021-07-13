@@ -5,7 +5,7 @@ import "../Sass/Footer.scss";
 export default function Footer() {
   return (
     <footer>
-      <ul className="footerList">
+      <ul className="footerList bg4Inverted">
         <h3>blobpost</h3>
         <Link to="/">
           <li>Home</li>

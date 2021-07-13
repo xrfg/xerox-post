@@ -33,6 +33,8 @@ body {
 
 a {
   text-decoration: none;
+  width: 100%;
+  height: 100%;
   color: inherit;
   cursor: pointer;
 }
@@ -62,7 +64,11 @@ a {
 }
 
 .bg4 {
-  background-image: linear-gradient(rgb(252, 229, 180), rgb(196, 215, 245));
+  background-image: linear-gradient(rgb(255, 242, 53), rgb(255, 194, 115));
+}
+
+.bg4Inverted {
+  background-image: linear-gradient(rgb(255, 194, 115), rgb(255, 242, 53));
 }
 
 .bg5 {
