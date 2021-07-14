@@ -1,3 +1,5 @@
+@import "Buttons";
+@import "InputFields";
 .homepage {
   width: 100vw;
   height: calc(100vh - 6rem);
@@ -29,7 +31,6 @@
     animation-delay: 1s;
     animation-direction: reverse;
   }
-
   .blob3 {
     animation-delay: 2s;
   }
@@ -39,15 +40,38 @@
   text-align: center;
   color: white;
   z-index: 10;
+  &__title {
+    margin-bottom: 2rem;
+    font-size: 4rem;
+  }
+  &__subtitle {
+    margin-bottom: 1rem;
+  }
+  &__form {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .emailBox {
-  border: none;
-  height: 1rem;
-  width: 26rem;
-  margin-right: 1rem;
-  margin-top: 2rem;
-  padding: 0.8rem;
+  @include registerInput;
+}
+
+.infoWarning {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  color: red;
+  text-decoration: underline red;
+}
+
+.startBtn {
+  @include startBtn;
+  margin-left: 2rem;
 }
 
 @keyframes move {

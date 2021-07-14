@@ -1,47 +1,78 @@
 const UserModel = require("../models/userSchema");
-const createError = require("http-errors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.postUser = async (req, res, next) => {
+  console.log(req.body);
+  const { email, password, confirmPassword, username } = req.body;
   try {
-    const user = new UserModel(req.body);
-    await user.save();
-    res.send({ success: true, data: user });
-  } catch (err) {
-    next(err);
-  }
-};
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      if (password === confirmPassword) {
+        const hashPass = await bcrypt.hash(password, 10);
+        console.log(hashPass);
+        new UserModel({
+          email,
+          username,
+          password: hashPass,
+        }).save((err, userData) => {
+          if (err) console.log(err);
+          const token = jwt.sign(
+            { email, username, id: userData._id },
+            "secretkeyfromxerox",
+            { expiresIn: 2592000000 }
+          );
 
-exports.getSingleUser = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const user = await UserModel.findById(id).select("-__v -password"); // select is a mongoose method that selects which properties you want, adding minus will hide it, without minus it selects it
-    if (user) {
-      return res.json({ success: true, data: user });
+          res.json({ token, userId: userData._id });
+          console.log("User data ==> ", userData);
+          console.log("User token ==> ", token);
+        });
+      } else {
+        console.log("Please confirm the password");
+        res.json({ error: "Please confirm the password" });
+      }
     } else {
-      next(new createError.BadRequest("no such user found in our collection"));
+      console.log(email + " already registered!");
+      res.json({ error: email + " already registered!" });
     }
   } catch (err) {
-    next(err);
+    console.log(err);
   }
 };
 
 exports.loginUser = async (req, res, next) => {
-  const user = await UserModel.findOne({ email: req.body.email });
+  console.log(req.body);
+  const { email, password, username } = req.body;
+  const user = await UserModel.findOne({ email });
   if (!user) {
-    next(new createError.NotFound("no such user found in DB"));
+    /* next(new createError.NotFound("No such user found in DB!")
+    ); */
+    console.log("No such user found in DB!");
+    res.json({ error: "No such user found in DB!" });
   } else {
-    const check = bcrypt.compareSync(req.body.password, user.password);
+    const check = bcrypt.compareSync(password, user.password);
     if (!check) {
-      next(new createError.NotFound("password doesnt match"));
+      /* next(new createError.NotFound("Password doesn't match!")); */
+      console.log("Password doesn't match!");
+      res.json({ error: "Password doesn't match!" });
     } else {
+      // IM HERE NOW
       const token = jwt.sign(
-        { id: user._id, email: user.email },
-        "secretkeyfromxerox"
+        { email, username, id: userData._id },
+        "secretkeyfromxerox",
+        { expiresIn: 2592000000 }
       );
-      res.header("x-auth", token);
-      res.send({ success: true, data: user });
+
+      res.json({ token, userId: userData._id });
+      console.log("User data ==> ", userData);
+      console.log("User token ==> ", token);
+
+      /* res.json({ token, userId: user._id });
+      console.log(token, "token");
+      console.log(user, "user");
+      // res.header("x-auth", token);
+      // res.json({ success: true, data: user });
+      res.send({ success: true, data: user }); */
     }
   }
 };

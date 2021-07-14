@@ -11,3 +11,21 @@
     font-size: 1.6rem;
   }
 }
+
+@mixin startBtn {
+  border: none;
+  cursor: pointer;
+
+  height: 4.2rem;
+  background-color: rgba(167, 44, 167, 1);
+  padding: 1rem;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.6rem;
+  transition: all 1s;
+  &:hover {
+    background-color: rgba(255, 194, 115, 0);
+    color: rgba(167, 44, 167, 1);
+    text-decoration: underline wavy springgreen;
+  }
+}

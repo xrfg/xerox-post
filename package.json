@@ -11,6 +11,7 @@
   "author": "xerox",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "client": "0.0.1",
     "concurrently": "^6.2.0",

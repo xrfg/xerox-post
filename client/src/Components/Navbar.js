@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <nav>
       <ul className={`navbar ${navAni && "navAni"} `}>
-        <div class="navBtnBox navBtnBox__home">
+        <div className="navBtnBox navBtnBox__home">
           <button className="navBtn">
             <NavLink activeClassName="activeNavLink" exact to="/">
               <span>Home</span>
@@ -25,23 +25,23 @@ export default function Navbar() {
           </button>
         </div>
 
-        {localStorage.getItem("x-auth") ? (
+        {localStorage.getItem("token") ? (
           <>
-            <div class="navBtnBox">
+            <div className="navBtnBox">
               <button className="navBtn">
                 <NavLink activeClassName="activeNavLink" to="/posts">
                   <span>All Posts</span>
                 </NavLink>
               </button>
             </div>
-            <div class="navBtnBox">
+            <div className="navBtnBox">
               <button className="navBtn">
                 <NavLink activeClassName="activeNavLink" to="/post">
                   <span>Post</span>
                 </NavLink>
               </button>
             </div>
-            <div class="navBtnBox">
+            <div className="navBtnBox">
               <button
                 className="navBtn"
                 onClick={() => {
@@ -58,7 +58,7 @@ export default function Navbar() {
             </div>
           </>
         ) : (
-          <div class="navBtnBox">
+          <div className="navBtnBox">
             <button className="navBtn">
               <NavLink activeClassName="activeNavLink" to="/login">
                 <span>Log in</span>

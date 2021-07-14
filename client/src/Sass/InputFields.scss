@@ -1,0 +1,13 @@
+@mixin registerInput {
+  border: none;
+  height: 4rem;
+  border-radius: 5px;
+  padding: 1.6rem;
+  font-size: 1.8rem;
+  width: 50%;
+  max-width: 40%;
+  min-width: 24rem;
+  &:focus {
+    border: none;
+  }
+}

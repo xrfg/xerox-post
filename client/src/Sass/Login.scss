@@ -1,30 +1,68 @@
+@import "InputFields";
+@import "Buttons";
 .loginResPage {
   width: 100vw;
   height: calc(100vh - 6rem); // size of nav (6rem)
+  background-color: rgb(255, 194, 115);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .formSection {
+    width: 70%;
+    padding: 2rem;
+    position: relative;
+
+    .registerHeader {
+      text-align: center;
+    }
+
+    .registerForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      .registerInput {
+        @include registerInput;
+        margin-bottom: 1.4rem;
+      }
+
+      .registerBtn {
+        @include startBtn;
+        width: 50%;
+        max-width: 40%;
+        min-width: 24rem;
+      }
+    }
+  }
+  .dontHaveAcc {
+    margin-top: 4rem;
+    text-align: center;
+    transition: all 0.4s;
+    opacity: 0.75;
+    &:hover {
+      opacity: 1;
+    }
+    span {
+      color: rgba(167, 44, 167, 1);
+      text-decoration: underline wavy rgb(255, 194, 115);
+      transition: all 0.4s;
+
+      &:hover {
+        text-decoration: underline wavy springgreen;
+      }
+    }
+  }
 }
 
-.signupHeader {
+.infoWarning2 {
+  margin-left: -2rem;
   text-align: center;
-}
+  width: 100%;
+  position: absolute;
 
-.signupForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.signupInput {
-  border: 1px solid grey;
-  padding: 1rem;
-  width: 20rem;
-  margin-bottom: 0.8rem;
-}
-
-.signupBtn {
-  width: 22rem;
+  color: red;
+  text-decoration: underline red;
 }
