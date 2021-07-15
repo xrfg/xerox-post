@@ -10,6 +10,7 @@ import Posts from "./Components/Posts";
 import Post from "./Components/Post";
 import About from "./Components/About";
 import "./Sass/Reset.scss";
+import Contact from "./Components/Contact";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/posts" component={Posts} />
             <Route path="/post" component={Post} />
             <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
           </Switch>
 
           <Footer />

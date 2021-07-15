@@ -71,7 +71,6 @@ export default function Register(props) {
             type="text"
             name="username"
             placeholder="Enter Username"
-            required
           />
 
           <input
@@ -80,7 +79,6 @@ export default function Register(props) {
             name="email"
             defaultValue={userEmail}
             placeholder="Enter Email"
-            required
           />
 
           <input
@@ -88,7 +86,6 @@ export default function Register(props) {
             type="password"
             name="password"
             placeholder="Enter Password"
-            required
           />
 
           <input
@@ -96,7 +93,6 @@ export default function Register(props) {
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            required
           />
           <button className="registerBtn" type="submit">
             <span>Signup</span>

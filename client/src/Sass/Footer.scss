@@ -3,15 +3,25 @@ footer {
   bottom: 0;
   width: 100%;
   height: 6rem;
+  font-size: 1.4rem;
 }
 
 .footerList {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   list-style-type: none;
   border-top: 1px solid violet;
-  padding: 1rem;
-}
-
-.footerList li {
-  padding: 1rem;
+  padding: 1rem 2rem;
+  color: gray;
+  li {
+    padding: 1rem;
+    transition: all 0.2s;
+    &:last-of-type {
+      margin-left: auto;
+    }
+    &:hover {
+      color: violet;
+    }
+  }
 }

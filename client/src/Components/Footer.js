@@ -6,22 +6,22 @@ export default function Footer() {
   return (
     <footer>
       <ul className="footerList bg4Inverted">
-        <h3>blobpost</h3>
-        <Link to="/">
-          <li>Home</li>
-        </Link>
-        <Link to="/about">
-          <li>About</li>
-        </Link>
-        <Link to="/posts">
-          <li>Posts</li>
-        </Link>
-        <Link to="/login">
-          <li>Login</li>
-        </Link>
-        <Link to="/register">
-          <li>Register</li>
-        </Link>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/lavenderexcesssweat/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            By Xerox Martins
+          </a>
+        </li>
       </ul>
     </footer>
   );
