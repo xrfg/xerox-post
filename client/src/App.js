@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "./context/Container";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -12,10 +12,8 @@ import About from "./Components/About";
 import "./Sass/Reset.scss";
 import Contact from "./Components/Contact";
 import setAuthFunc from "./config/setAuth";
-// import MyContext from "./context/MyContext";
 
 function App() {
-  // const { isLogin, setIsLogin } = useContext(MyContext);
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
@@ -36,12 +34,16 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Route path="/posts" component={Posts} />
+
             {isLogin ? (
-              <Route path="/post" component={Post} />
+              <>
+                <Route path="/post" component={Post} />
+                <Route path="/posts" component={Posts} />{" "}
+              </>
             ) : (
               <Redirect to="/login" />
             )}
+
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
           </Switch>
