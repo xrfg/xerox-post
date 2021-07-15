@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Container from "./context/Container";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Register from "./Components/Register";
@@ -11,8 +11,21 @@ import Post from "./Components/Post";
 import About from "./Components/About";
 import "./Sass/Reset.scss";
 import Contact from "./Components/Contact";
+import setAuthFunc from "./config/setAuth";
+// import MyContext from "./context/MyContext";
 
 function App() {
+  // const { isLogin, setIsLogin } = useContext(MyContext);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setAuthFunc(token);
+      setIsLogin(true);
+    }
+  }, []);
+
   return (
     <Container>
       <BrowserRouter>
@@ -24,7 +37,11 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/posts" component={Posts} />
-            <Route path="/post" component={Post} />
+            {isLogin ? (
+              <Route path="/post" component={Post} />
+            ) : (
+              <Redirect to="/login" />
+            )}
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
           </Switch>

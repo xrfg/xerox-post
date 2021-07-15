@@ -1,6 +1,7 @@
 const UserModel = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const config = require("../config/env");
 
 exports.postUser = async (req, res, next) => {
   console.log(req.body);
@@ -19,7 +20,7 @@ exports.postUser = async (req, res, next) => {
           if (err) console.log(err);
           const token = jwt.sign(
             { email, username, id: userData._id },
-            "secretkeyfromxerox",
+            config.jwtKey,
             { expiresIn: 2592000000 }
           );
 
@@ -42,37 +43,26 @@ exports.postUser = async (req, res, next) => {
 
 exports.loginUser = async (req, res, next) => {
   console.log(req.body);
-  const { email, password, username } = req.body;
-  const user = await UserModel.findOne({ email });
-  if (!user) {
-    /* next(new createError.NotFound("No such user found in DB!")
-    ); */
-    console.log("No such user found in DB!");
-    res.json({ error: "No such user found in DB!" });
-  } else {
-    const check = bcrypt.compareSync(password, user.password);
-    if (!check) {
-      /* next(new createError.NotFound("Password doesn't match!")); */
-      console.log("Password doesn't match!");
-      res.json({ error: "Password doesn't match!" });
+  const { email, password } = req.body;
+  try {
+    const user = await UserModel.findOne({ email });
+    if (user) {
+      const check = bcrypt.compareSync(password, user.password);
+      if (check) {
+        const token = jwt.sign(
+          { email: user.email, username: user.username, id: user._id },
+          config.jwtKey,
+          { expiresIn: 2592000000 }
+        );
+
+        res.json({ token, userId: user._id });
+      } else {
+        res.json({ error: "The password is not correct" });
+      }
     } else {
-      // IM HERE NOW
-      const token = jwt.sign(
-        { email, username, id: userData._id },
-        "secretkeyfromxerox",
-        { expiresIn: 2592000000 }
-      );
-
-      res.json({ token, userId: userData._id });
-      console.log("User data ==> ", userData);
-      console.log("User token ==> ", token);
-
-      /* res.json({ token, userId: user._id });
-      console.log(token, "token");
-      console.log(user, "user");
-      // res.header("x-auth", token);
-      // res.json({ success: true, data: user });
-      res.send({ success: true, data: user }); */
+      res.json({ error: email + " not found, please register" });
     }
+  } catch (err) {
+    console.log(error);
   }
 };

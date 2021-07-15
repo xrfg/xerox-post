@@ -23,7 +23,7 @@ export default function Register(props) {
 
     console.log("sign up data ==>", user);
 
-    // post req ==> http://localhost:5000/api/v1/register
+    // post req ==> http://localhost:5000/api/v1/users/register
 
     try {
       const res = await axios.post(baseURL + "/users/register", user);

@@ -1,0 +1,23 @@
+.postForm {
+  display: flex;
+  flex-direction: column;
+  label {
+    margin-bottom: 1rem;
+    input {
+      margin-top: 1rem;
+      display: block;
+    }
+    textarea {
+      margin-top: 1rem;
+      display: block;
+      width: 100%;
+      height: 40rem;
+      font-size: 1.8rem;
+      font-family: sans-serif;
+      padding: 1rem;
+    }
+  }
+  button {
+    margin-top: 1rem;
+  }
+}

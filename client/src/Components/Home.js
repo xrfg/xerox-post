@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from "react";
 import MyContext from "../context/MyContext";
 import "../Sass/Home.scss";
-import Blob1 from "../assets/svg/blob.svg";
+/* import Blob1 from "../assets/svg/blob.svg";
 import Blob2 from "../assets/svg/blob2.svg";
-import Blob3 from "../assets/svg/blob3.svg";
+import Blob3 from "../assets/svg/blob3.svg"; */
 
 export default function Home(props) {
   const [error, setError] = useState();
@@ -17,11 +17,11 @@ export default function Home(props) {
   }
   return (
     <div className="homepage">
-      <div className="blobsBox">
+      {/* <div className="blobsBox">
         <img className="blobImg" src={Blob1} alt="Blob log" />
         <img className="blobImg blob2" src={Blob2} alt="Blob log" />
         <img className="blobImg blob3" src={Blob3} alt="Blob log" />
-      </div>
+      </div> */}
 
       <div className="fancyborder"></div>
       <div className="hero">
