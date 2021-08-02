@@ -1,0 +1,28 @@
+.userAvatar {
+  max-width: 60px;
+  border-radius: 50%;
+}
+
+.cardList {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.card {
+  background-color: rgb(144, 144, 194);
+  padding: 0rem;
+  &__img {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 22rem;
+  }
+  &__text {
+    padding: 2rem;
+    &__title {
+      color: red;
+    }
+  }
+}

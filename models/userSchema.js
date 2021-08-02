@@ -7,6 +7,10 @@ const UserSchema = new Schema({
   email: { type: String, required: true, lowercase: true, unique: true },
   password: { type: String, required: true, minlength: 4 },
   isAdmin: { type: Boolean, default: false },
+  date: {
+    type: String,
+    default: new Date(),
+  },
   avatar: {
     type: String,
     default:
@@ -14,4 +18,4 @@ const UserSchema = new Schema({
   },
 });
 
-module.exports = User = mongoose.model("users", UserSchema);
+module.exports = User = mongoose.model("user", UserSchema);
