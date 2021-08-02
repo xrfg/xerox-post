@@ -4,8 +4,34 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  text: { type: String, required: true, minlength: 4 },
+  category: {
+    type: String,
+    require: true,
+  },
+  coverImage: {
+    type: String,
+    require: true,
+  },
+  views: {
+    type: Number,
+    default: 0,
+  },
+  content: {
+    type: String,
+    require: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
+  date: {
+    type: String,
+    default: new Date(),
+  },
+  update: {
+    type: String,
+    default: new Date(),
+  },
 });
 
 module.exports = Post = mongoose.model("posts", PostSchema);

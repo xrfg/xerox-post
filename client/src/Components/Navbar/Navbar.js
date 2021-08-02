@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
-import "../Sass/Navbar.scss";
+import "./Navbar.scss";
 
 export default function Navbar() {
   const history = useHistory();

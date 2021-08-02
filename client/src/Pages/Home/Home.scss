@@ -1,5 +1,5 @@
-@import "Buttons";
-@import "InputFields";
+@import "../../Components/Buttons/Buttons.scss";
+@import "../../Components/InputFields/InputFields.scss";
 .homepage {
   width: 100vw;
   height: calc(100vh - 6rem);

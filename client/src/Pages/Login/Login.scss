@@ -1,5 +1,5 @@
-@import "InputFields";
-@import "Buttons";
+@import "../../Components/Buttons/Buttons.scss";
+@import "../../Components/InputFields/InputFields.scss";
 .loginResPage {
   width: 100vw;
   height: calc(100vh - 6rem); // size of nav (6rem)

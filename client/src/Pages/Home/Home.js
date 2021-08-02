@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
-import MyContext from "../context/MyContext";
-import "../Sass/Home.scss";
+import MyContext from "../../context/MyContext";
+import "./Home.scss";
 /* import Blob1 from "../assets/svg/blob.svg";
 import Blob2 from "../assets/svg/blob2.svg";
 import Blob3 from "../assets/svg/blob3.svg"; */

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Container from "./context/Container";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Register from "./Components/Register";
-import Login from "./Components/Login";
-import Footer from "./Components/Footer";
-import Posts from "./Components/Posts";
-import Post from "./Components/Post";
-import About from "./Components/About";
-import "./Sass/Reset.scss";
-import Contact from "./Components/Contact";
+import Navbar from "./Components/Navbar/Navbar";
+import Home from "./Pages/Home/Home";
+import Register from "./Pages/Register/Register";
+import Login from "./Pages/Login/Login";
+import Footer from "./Pages/Footer/Footer";
+import Posts from "./Pages/Posts/Posts";
+import Post from "./Pages/Post/Post";
+import About from "./Pages/About/About";
+import Contact from "./Pages/Contact/Contact";
+import "./App.scss";
 import setAuthFunc from "./config/setAuth";
 
 function App() {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import baseURL from "../config/baseURL";
-import "../Sass/Post.scss";
+import baseURL from "../../config/baseURL";
+import "./Post.scss";
 
 export default function Post() {
   const [error, setError] = useState();
@@ -12,8 +12,9 @@ export default function Post() {
 
     const post = {
       title: e.target.title.value,
-      description: e.target.description.value,
-      text: e.target.text.value,
+      category: e.target.category.value,
+      coverImage: e.target.coverImage.value,
+      content: e.target.content.value,
     };
 
     console.log("post data frontend ==>", post);
@@ -52,11 +53,21 @@ export default function Post() {
             />
           </label>
           <label>
-            Post Description:
+            Post Category:
             <input
               type="text"
-              name="description"
-              placeholder="Description"
+              name="category"
+              placeholder="Category"
+              className="emailBox"
+              required
+            />
+          </label>
+          <label>
+            Cover Image:
+            <input
+              type="text"
+              name="coverImage"
+              placeholder="Cover Image URL"
               className="emailBox"
               required
             />
@@ -65,7 +76,7 @@ export default function Post() {
             Post:
             <textarea
               placeholder="text"
-              name="text"
+              name="content"
               required
               className="postTextarea"
             ></textarea>

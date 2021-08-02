@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import baseURL from "../config/baseURL";
-import MyContext from "../context/MyContext";
-import "../Sass/Login.scss";
+import baseURL from "../../config/baseURL";
+import MyContext from "../../context/MyContext";
+import "./Login.scss";
 
 export default function Login(props) {
   const [error, setError] = useState();
