@@ -1,0 +1,20 @@
+.profileAvatar {
+  max-width: 300px;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
+
+.profileName {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.bigUrl {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.profileBtn {
+  align-self: flex-start;
+  margin-left: 0;
+}

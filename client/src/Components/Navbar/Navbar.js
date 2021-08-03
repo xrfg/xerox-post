@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, NavLink } from "react-router-dom";
 import "./Navbar.scss";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   const history = useHistory();
 
   const [navAni, setNavAni] = useState(false);
@@ -25,19 +25,33 @@ export default function Navbar() {
           </button>
         </div>
 
-        {localStorage.getItem("token") ? (
+        <div className="navBtnBox">
+          <button className="navBtn">
+            <NavLink activeClassName="activeNavLink" to="/posts">
+              <span>All Posts</span>
+            </NavLink>
+          </button>
+        </div>
+
+        {user ? (
           <>
             <div className="navBtnBox">
               <button className="navBtn">
-                <NavLink activeClassName="activeNavLink" to="/posts">
-                  <span>All Posts</span>
+                <NavLink activeClassName="activeNavLink" to="/post">
+                  <span>Post</span>
                 </NavLink>
               </button>
             </div>
             <div className="navBtnBox">
               <button className="navBtn">
-                <NavLink activeClassName="activeNavLink" to="/post">
-                  <span>Post</span>
+                <NavLink activeClassName="activeNavLink" to="/profile">
+                  <div style={{ display: "flex" }}>
+                    <span>{user.username}</span>
+                    <div
+                      className="avatarBox"
+                      style={{ backgroundImage: "url(" + user.avatar + ")" }}
+                    ></div>
+                  </div>
                 </NavLink>
               </button>
             </div>

@@ -66,3 +66,28 @@ exports.loginUser = async (req, res, next) => {
     console.log(error);
   }
 };
+
+exports.getUser = async (req, res, next) => {
+  const id = req.params.id;
+
+  const user = await UserModel.findById(id).select("-password");
+  res.send(user);
+  console.log(user);
+};
+
+exports.getAllUsers = async (req, res, next) => {
+  if (req.user.isAdmin) {
+    const users = await UserModel.find().select("-password");
+    res.send(users);
+  }
+};
+
+exports.editUser = async (req, res, next) => {
+  const { username, avatar } = req.body;
+  console.log("req.user", req.user);
+  const user = await UserModel.findById(req.user._id);
+  user.username = username;
+  user.avatar = avatar;
+  user.save();
+  res.send(true);
+};

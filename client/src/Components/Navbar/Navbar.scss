@@ -33,7 +33,7 @@
   :hover {
     transition: background-color 0.4s ease-in-out;
     background-color: rgb(158, 116, 158);
-    border-radius: 63% 37% 37% 63% / 36% 46% 54% 64%;
+    // border-radius: 63% 37% 37% 63% / 36% 46% 54% 64%;
   }
   :hover span {
     color: rgb(255, 194, 115);
@@ -48,4 +48,13 @@
 .navAni {
   background-color: rgb(255, 194, 115);
   border-bottom: 1px solid violet;
+}
+.avatarBox {
+  display: inline-block;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 8px;
+  background-size: cover;
+  background-position: center;
 }
