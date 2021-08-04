@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import baseURL from "../../config/baseURL";
-import "./Post.scss";
+import "./PostAPost.scss";
 
 export default function Post() {
   const [error, setError] = useState();

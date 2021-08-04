@@ -7,7 +7,7 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import Footer from "./Pages/Footer/Footer";
 import Posts from "./Pages/Posts/Posts";
-import Post from "./Pages/Post/Post";
+import PostAPost from "./Pages/PostAPost/PostAPost";
 import About from "./Pages/About/About";
 import Contact from "./Pages/Contact/Contact";
 import Profile from "./Pages/Profile/Profile";
@@ -15,6 +15,7 @@ import "./App.scss";
 import setAuthFunc from "./config/setAuth";
 import axios from "axios";
 import baseURL from "./config/baseURL";
+import SinglePost from "./Pages/SinglePost/SinglePost";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -53,6 +54,7 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/posts" component={Posts} />
+            <Route exact path="/posts/:id" component={SinglePost} />
 
             {!user && (
               <>
@@ -67,7 +69,7 @@ function App() {
                   <Profile user={user} />
                 </Route>
                 <Route exact path="/post">
-                  <Post user={user} />
+                  <PostAPost user={user} />
                 </Route>
               </>
             )}

@@ -33,7 +33,7 @@ export default function Posts() {
         ) : (
           posts.map((post, idx) => (
             <div className="card" key={idx}>
-              <Link to={"/post/" + post._id}>
+              <Link to={"/posts/" + post._id}>
                 <div
                   className="card__img"
                   style={{ backgroundImage: `url(${post.coverImage})` }}
