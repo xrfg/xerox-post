@@ -37,8 +37,8 @@ export default function Navbar({ user }) {
           <>
             <div className="navBtnBox">
               <button className="navBtn">
-                <NavLink activeClassName="activeNavLink" to="/post">
-                  <span>Post</span>
+                <NavLink activeClassName="activeNavLink" to="/my-posts">
+                  <span>My Posts</span>
                 </NavLink>
               </button>
             </div>

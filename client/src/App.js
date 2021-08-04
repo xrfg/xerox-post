@@ -16,6 +16,7 @@ import setAuthFunc from "./config/setAuth";
 import axios from "axios";
 import baseURL from "./config/baseURL";
 import SinglePost from "./Pages/SinglePost/SinglePost";
+import MyPosts from "./Pages/MyPosts/MyPosts";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -68,8 +69,11 @@ function App() {
                 <Route exact path="/profile">
                   <Profile user={user} />
                 </Route>
-                <Route exact path="/post">
+                <Route exact path="/create-post">
                   <PostAPost user={user} />
+                </Route>
+                <Route exact path="/my-posts">
+                  <MyPosts user={user} />
                 </Route>
               </>
             )}

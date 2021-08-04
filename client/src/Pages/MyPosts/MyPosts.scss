@@ -1,0 +1,62 @@
+@import "../../Components/Buttons/Buttons.scss";
+
+.myPostsHeader {
+  text-align: center;
+}
+
+.myPostsEmail {
+  font-size: 1.2rem;
+  color: gray;
+  text-align: center;
+}
+
+.newPostBtn {
+  @include startBtn;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.myPostsList {
+  list-style-type: none;
+}
+
+.postRow {
+  width: 100%;
+  background-color: rgb(235, 203, 219);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  display: flex;
+  transition: all 0.1s;
+
+  img {
+    margin-right: 2rem;
+    object-fit: cover;
+  }
+}
+
+.postRow:hover {
+  transform: scale(1.025);
+}
+
+.myPostsDate {
+  color: gray;
+  margin-left: 1rem;
+}
+
+.deleteBtn,
+.editBtn {
+  @include startBtn;
+}
+
+.btnBox {
+  margin-left: auto;
+}
+.editBtn {
+  background-color: rgb(113, 241, 101);
+  margin-right: 1rem;
+}
+
+.deleteBtn {
+  background-color: rgb(252, 109, 65);
+}

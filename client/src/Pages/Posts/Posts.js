@@ -25,7 +25,7 @@ export default function Posts() {
   }, []);
   console.log(posts);
   return (
-    <div className="container Page">
+    <div className="page">
       <h1>Posts</h1>
       <div className="cardList">
         {loading ? (
