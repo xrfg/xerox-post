@@ -73,7 +73,7 @@ export default function Post() {
             />
           </label>
           <label>
-            Post:
+            Content:
             <textarea
               placeholder="text"
               name="content"

@@ -17,7 +17,7 @@ import axios from "axios";
 import baseURL from "./config/baseURL";
 import SinglePost from "./Pages/SinglePost/SinglePost";
 import MyPosts from "./Pages/MyPosts/MyPosts";
-
+import EditPost from "./Pages/EditPost/EditPost";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState();
@@ -74,6 +74,9 @@ function App() {
                 </Route>
                 <Route exact path="/my-posts">
                   <MyPosts user={user} />
+                </Route>
+                <Route exact path="/edit-post/:id">
+                  <EditPost user={user} />
                 </Route>
               </>
             )}

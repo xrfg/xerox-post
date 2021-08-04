@@ -34,6 +34,7 @@ export default function Home(props) {
             ref={inputVal}
             placeholder="Email address"
             className="emailBox"
+            style={{ marginRight: "2rem" }}
           />
           <button
             className="startBtn"
