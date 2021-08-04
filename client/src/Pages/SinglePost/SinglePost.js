@@ -34,31 +34,29 @@ export default function SinglePost() {
       {loading ? (
         <span>loading</span>
       ) : (
-        <>
+        <div className="container">
           <h1>{post.title}</h1>
-          <figcaption>
-            By:{" "}
-            <img
-              alt="User Avatar"
-              src={post.userId.avatar}
-              className="Avatar"
-            />{" "}
-            {" " + post.userId.username + " | "}
-            <cite title="Source Title">
-              <Moment date={post.date} fromNow />
-            </cite>
-            {" | Last update "}{" "}
-            <cite title="Source Title">
-              <Moment date={post.update} fromNow />
-            </cite>
-            {" | "}
-            <i class="fas fa-eye"></i> {post.views}
-          </figcaption>
+          <div style={{ display: "flex" }}>
+            <span>{post.userId.username}</span>
+            <div
+              className="avatarBox"
+              style={{ backgroundImage: "url(" + post.userId.avatar + ")" }}
+            ></div>
+          </div>
+          <cite title="Source Title">
+            <Moment date={post.date} fromNow />
+          </cite>
+          {" | Last update "}{" "}
+          <cite title="Source Title">
+            <Moment date={post.update} fromNow />
+          </cite>
+          {" | "}
+          <i class="fas fa-eye"></i> {post.views}
           <p
             className="Content"
             dangerouslySetInnerHTML={{ __html: post.content }}
           ></p>
-        </>
+        </div>
       )}
     </div>
   );

@@ -24,6 +24,7 @@ export default function MyPosts({ user }) {
     setLoading(true);
     try {
       const postData = await axios.delete(baseURL + "/posts/" + id);
+      console.log(postData.data);
       setLoading(false);
       window.location.reload();
     } catch (e) {
@@ -69,8 +70,12 @@ export default function MyPosts({ user }) {
                     </button>
                     <button
                       className="deleteBtn"
-                      onClick={() => onDeletePost(post._id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onDeletePost(post._id);
+                      }}
                       type="button"
+                      style={{ zIndex: "100" }}
                     >
                       Delete
                     </button>

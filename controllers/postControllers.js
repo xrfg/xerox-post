@@ -68,12 +68,11 @@ exports.findOne = async (req, res, next) => {
 exports.deleteOne = async (req, res, next) => {
   const { id } = req.params;
   try {
-    if (
+    /* if (
       req.user._id.toString() === post.userId.toString() ||
       req.user.isAdmin
-    ) {
-      const posts = await PostModel.findOneAndRemove({ _id: id });
-    }
+    ) { */
+    const posts = await PostModel.findOneAndRemove({ _id: id });
     res.json(true);
   } catch (e) {
     console.log(e);
