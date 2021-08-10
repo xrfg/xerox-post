@@ -7,13 +7,58 @@ export default function Post() {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
 
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const uploadImageAndPost = async (e) => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "xeroxtry");
+    formData.append("cloud_name", "xeroxcloud");
+    const options = { method: "POST", body: formData };
+    return fetch(
+      "https://api.cloudinary.com/v1_1/xeroxcloud/image/upload",
+      options
+    )
+      .then((res) => res.json())
+      .then(async (res) => {
+        setUrl(res.secure_url);
+        const post = {
+          title: e.target.title.value,
+          category: e.target.category.value,
+          coverImage: url,
+          content: e.target.content.value,
+        };
+        console.log(post);
+
+        try {
+          const res = await axios.post(baseURL + "/posts/post", post);
+          if (res.data.error) {
+            setError(res.data.error);
+            setSuccess(null);
+          } else {
+            setError(null);
+            setSuccess("posted successfully, redirect in 3 seconds");
+            setTimeout(() => {
+              window.location.replace("/posts");
+            }, 3000);
+          }
+          console.log("res => ", res.data);
+        } catch (err) {
+          console.log(err);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   const submitPost = async (e) => {
     e.preventDefault();
+    await uploadImageAndPost(e);
 
-    const post = {
+    /*  const post = {
       title: e.target.title.value,
       category: e.target.category.value,
-      coverImage: e.target.coverImage.value,
+      coverImage: url,
       content: e.target.content.value,
     };
 
@@ -29,18 +74,18 @@ export default function Post() {
       } else {
         setError(null);
         setSuccess("posted successfully, redirect in 3 seconds");
-        setTimeout(() => {
+        /* setTimeout(() => {
           window.location.replace("/posts");
         }, 3000);
       }
       console.log("res => ", res.data);
     } catch (err) {
       console.log(err);
-    }
+    } */
   };
   return (
-    <div className="homepage">
-      <div className="formSection">
+    <div className="createPostPage">
+      <div style={{ padding: "4rem 0" }} className="formSection">
         <form onSubmit={submitPost} className="postForm">
           <label>
             Post Title:
@@ -63,15 +108,17 @@ export default function Post() {
             />
           </label>
           <label>
-            Cover Image:
+            Image Upload:
             <input
-              type="text"
-              name="coverImage"
-              placeholder="Cover Image URL"
-              className="emailBox"
-              required
-            />
+              type="file"
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+                console.log(image);
+                console.log(e.target.files[0]);
+              }}
+            ></input>
           </label>
+
           <label>
             Content:
             <textarea

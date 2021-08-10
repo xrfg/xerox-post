@@ -26,50 +26,59 @@ export default function Posts() {
   console.log(posts);
   return (
     <div className="page">
-      <h1>Posts</h1>
-      <div className="cardList">
-        {loading ? (
-          <p>loading...</p>
-        ) : (
-          posts.map((post, idx) => (
-            <div className="card" key={idx}>
-              <Link to={"/posts/" + post._id}>
-                <div
-                  className="card__img"
-                  style={{ backgroundImage: `url(${post.coverImage})` }}
-                ></div>
-                <div className="card__text">
-                  <h4 class="card__text__title">{post.title}</h4>
-                  <div>
+      <div className="postsContainer">
+        <h1 className="pageHeader">Posts</h1>
+        <div className="cardList">
+          {loading ? (
+            <p>loading...</p>
+          ) : (
+            posts.map((post) => (
+              <div className="card" key={post._id}>
+                <Link to={"/posts/" + post._id}>
+                  <div
+                    className="card__img"
+                    style={{ backgroundImage: `url(${post.coverImage})` }}
+                  ></div>
+                  <div className="card__text">
+                    <h4 class="card__text__title">{post.title}</h4>
                     <div>
-                      <span>By: {" " + post.userId.username + "  "}</span>
-                      <img
-                        alt="User Avatar"
-                        src={post.userId.avatar}
-                        className="userAvatar"
-                      />
-                      <Moment date={post.date} fromNow />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "start",
+                          alignItems: "center",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        <span>{post.userId.username}</span>
+                        <img
+                          alt="User Avatar"
+                          src={post.userId.avatar}
+                          className="userAvatar"
+                        />
+                        <p>
+                          {" "}
+                          <Moment date={post.date} fromNow />
+                        </p>
+                      </div>
+                      <span className="card__category">{post.category}</span>
+                      <p className="lastUpdated">
+                        Last updated <Moment date={post.update} fromNow />
+                      </p>
                     </div>
-                    <p>Category: {post.category}</p>
-                    <p>
-                      Last updated <Moment date={post.update} fromNow />
-                    </p>
+                    {post.views === 0 ? (
+                      <span className="viewsBadge newPostBadge">New</span>
+                    ) : null}
+                    {post.views !== 0 ? (
+                      <span className="viewsBadge">{post.views}</span>
+                    ) : null}
                   </div>
-
-                  {post.views === 0 ? (
-                    <span className="badge badge-success Alert">New</span>
-                  ) : null}
-                  {post.views !== 0 ? (
-                    <span className="badge badge-pill badge-info CardViews">
-                      <i class="fas fa-eye"></i> {post.views}
-                    </span>
-                  ) : null}
-                </div>
-              </Link>
-            </div>
-          ))
-        )}
-        {posts.length < 1 && !loading && "posts Not Found!"}
+                </Link>
+              </div>
+            ))
+          )}
+          {posts.length < 1 && !loading && "posts Not Found!"}
+        </div>
       </div>
     </div>
   );

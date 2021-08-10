@@ -11,11 +11,31 @@ export default function EditPost() {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "xeroxtry");
+    formData.append("cloud_name", "xeroxcloud");
+    const options = { method: "POST", body: formData };
+    return fetch(
+      "https://api.cloudinary.com/v1_1/xeroxcloud/image/upload",
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => setUrl(res.secure_url))
+      .catch((err) => console.log(err));
+  };
+
   let { id } = useParams();
   const submitHandler = async (e) => {
     e.preventDefault();
+    uploadImage();
     const title = e.target.title.value;
-    const coverImage = e.target.coverImage.value;
+    const coverImage = url;
     const category = e.target.category.value;
     const postData = {
       content,
@@ -63,13 +83,13 @@ export default function EditPost() {
   }, []);
   console.log(post);
   return (
-    <div className="homepage">
+    <div className="createPostPage">
       {error && <div role="alert">{error}</div>}
       {success && <div role="alert">{success}</div>}
       {loading ? (
         <span>loading...</span>
       ) : (
-        <div className="formSection">
+        <div style={{ padding: "4rem 0" }} className="formSection">
           <h1 style={{ marginBottom: "2rem" }}>Edit Post</h1>
           <form onSubmit={submitHandler} className="postForm">
             <label>
@@ -91,14 +111,11 @@ export default function EditPost() {
               />
             </label>
             <label>
-              Cover Image:
+              Image Upload:
               <input
-                type="text"
-                name="coverImage"
-                defaultValue={post.coverImage}
-                className="emailBox"
-                required
-              />
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+              ></input>
             </label>
             <label>
               Content:

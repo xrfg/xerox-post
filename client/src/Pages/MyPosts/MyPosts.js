@@ -51,9 +51,9 @@ export default function MyPosts({ user }) {
           {loading ? (
             <span>loading...</span>
           ) : (
-            posts.map((post, idx) => (
+            posts.map((post) => (
               <Link to={"/posts/" + post._id}>
-                <li className="postRow" key={idx}>
+                <li className="postRow" key={post._id}>
                   <img
                     alt="Post Avatar"
                     src={post.coverImage}

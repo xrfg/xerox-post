@@ -14,7 +14,7 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
     default:
-      "https://img.favpng.com/25/13/19/samsung-galaxy-a8-a8-user-login-telephone-avatar-png-favpng-dqKEPfX7hPbc6SMVUCteANKwj.jpg",
+      "https://i.pinimg.com/originals/df/f4/b2/dff4b2754148fe29ab42b5ee36d3c68d.png",
   },
 });
 

@@ -25,9 +25,9 @@ export default function Home(props) {
 
       <div className="fancyborder"></div>
       <div className="hero">
-        <h1 className="hero__title">Blob Posting</h1>
-        <h2 className="hero__subtitle">Read anywhere. Post anytime.</h2>
-        <h2>Blobs in progress... Enter your email to create a membership</h2>
+        <h1 className="hero__title">🕸️ RatSitu 🌐</h1>
+        <h2 className="hero__subtitle">🧱 Read anywhere 🐀 Post anytime 🚱</h2>
+        <h2>Enter your email to contribute to the wall</h2>
         <form className="hero__form" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
