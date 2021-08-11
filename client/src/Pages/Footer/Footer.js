@@ -19,7 +19,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            By Xerox Martins
+            By Rox Martins
           </a>
         </li>
       </ul>

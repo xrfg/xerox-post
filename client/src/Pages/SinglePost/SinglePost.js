@@ -36,6 +36,10 @@ export default function SinglePost() {
       ) : (
         <div className="container">
           <h1>{post.title}</h1>
+          <img
+            style={{ maxWidth: "700px", minWidth: "300px" }}
+            src={post.coverImage}
+          ></img>
           <div style={{ display: "flex" }}>
             <span>{post.userId.username}</span>
             <div
@@ -43,19 +47,17 @@ export default function SinglePost() {
               style={{ backgroundImage: "url(" + post.userId.avatar + ")" }}
             ></div>
           </div>
-          <cite title="Source Title">
+
+          <span>
             <Moment date={post.date} fromNow />
-          </cite>
-          {" | Last update "}{" "}
-          <cite title="Source Title">
-            <Moment date={post.update} fromNow />
-          </cite>
-          {" | "}
-          <i class="fas fa-eye"></i> {post.views}
-          <p
-            className="Content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          ></p>
+          </span>
+
+          <span>
+            {" | Last update "} <Moment date={post.update} fromNow />
+            {" | "}
+          </span>
+          <span>{post.views}</span>
+          <p>{post.content}</p>
         </div>
       )}
     </div>
