@@ -2,6 +2,7 @@
   max-width: 300px;
   margin-bottom: 2rem;
   border-radius: 1rem;
+  background-color: white;
 }
 
 .profileName {
@@ -17,4 +18,8 @@
 .profileBtn {
   align-self: flex-start;
   margin-left: 0;
+}
+
+#overcome {
+  height: 4rem;
 }
