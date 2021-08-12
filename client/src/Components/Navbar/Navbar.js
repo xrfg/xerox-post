@@ -19,15 +19,7 @@ export default function Navbar({ user }) {
       <ul className={`navbar ${navAni && "navAni"} `}>
         <div className="navBtnBox navBtnBox__home">
           <button className="navBtn">
-            <NavLink activeClassName="activeNavLink" exact to="/">
-              <span>Home</span>
-            </NavLink>
-          </button>
-        </div>
-
-        <div className="navBtnBox">
-          <button className="navBtn">
-            <NavLink activeClassName="activeNavLink" to="/posts">
+            <NavLink activeClassName="activeNavLink" exact to="/posts">
               <span>All Posts</span>
             </NavLink>
           </button>

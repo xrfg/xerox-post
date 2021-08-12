@@ -49,7 +49,7 @@ export default function Post() {
             setSuccess(null);
           } else {
             setError(null);
-            setSuccess("posted successfully, redirect in 3 seconds");
+            setSuccess(true);
             setTimeout(() => {
               window.location.replace("/posts");
             }, 1000);
@@ -96,6 +96,7 @@ export default function Post() {
   };
   return (
     <div className="createPostPage">
+      {success && <div className="successNote"></div>}
       <div style={{ padding: "4rem 0" }} className="formSection">
         <form onSubmit={submitPost} className="postForm">
           <label>

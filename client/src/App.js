@@ -51,7 +51,6 @@ function App() {
           <Navbar user={user} />
 
           <Switch>
-            <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/posts" component={Posts} />
@@ -59,6 +58,7 @@ function App() {
 
             {!user && (
               <>
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
               </>
@@ -66,6 +66,9 @@ function App() {
 
             {user && (
               <>
+                <Route exact path="/">
+                  <Posts />
+                </Route>
                 <Route exact path="/profile">
                   <Profile user={user} />
                 </Route>

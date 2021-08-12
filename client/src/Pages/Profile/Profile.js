@@ -41,7 +41,7 @@ export default function Profile({ user }) {
         try {
           const res = await axios.post(baseURL + "/users/edit", userData);
 
-          setSuccess("profile successfully updated, redirect in 1s");
+          setSuccess(true);
           setTimeout(() => {
             window.location.replace("/my-posts");
           }, 1000);
@@ -60,7 +60,8 @@ export default function Profile({ user }) {
     await handleImgUploadAndPost(e);
   };
   return (
-    <div className="homepage">
+    <div className="homepage" style={{ position: "relative" }}>
+      {success && <div className="successNote"></div>}
       <div className="formSection">
         <h1 className="registerHeader">My Profile</h1>
         <h4 className="profileName">Hi {user.username}!</h4>
@@ -75,11 +76,7 @@ export default function Profile({ user }) {
             }}
           />
         </label>
-        {success && (
-          <div className="" role="alert">
-            {success}
-          </div>
-        )}
+
         <img src={url} alt="Profile Avatar" className="profileAvatar" />
         <form className="postForm" onSubmit={onSubmit}>
           <label style={{ marginTop: "4rem" }}>

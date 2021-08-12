@@ -77,7 +77,7 @@ export default function EditPost() {
             setSuccess(null);
           } else {
             setError(null);
-            setSuccess("posted edited successfully, redirect in 1s");
+            setSuccess(true);
             setTimeout(() => {
               window.location.replace("/posts");
             }, 1000);
@@ -99,8 +99,7 @@ export default function EditPost() {
   console.log(post);
   return (
     <div className="createPostPage">
-      {error && <div role="alert">{error}</div>}
-      {success && <div role="alert">{success}</div>}
+      {success && <div className="successNote"></div>}
       {loading ? (
         <span>loading...</span>
       ) : (

@@ -27,10 +27,10 @@ export default function Login(props) {
         setError(null);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userId", res.data.userId);
-        setSuccess("logged in successfully, redirect in 3 seconds");
+        setSuccess(true);
         setTimeout(() => {
           window.location.replace("/");
-        }, 3000);
+        }, 1000);
       }
       console.log("res => ", res.data);
     } catch (err) {
@@ -63,7 +63,7 @@ export default function Login(props) {
   };
   return (
     <div className="loginResPage">
-      {/* {success && <div>{success}</div>} */}
+      {success && <div className="successNote"></div>}
       <div className="formSection">
         <h2 className="registerHeader">Log in!</h2>
         <form onSubmit={loginForm} className="registerForm">

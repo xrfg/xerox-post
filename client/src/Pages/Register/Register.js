@@ -34,10 +34,10 @@ export default function Register(props) {
         setError(null);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("userId", res.data.userId);
-        setSuccess("registered successfully, redirect in 3 seconds");
+        setSuccess(true);
         setTimeout(() => {
           window.location.replace("/");
-        }, 3000);
+        }, 1000);
       }
       console.log("res => ", res.data);
     } catch (err) {
@@ -62,7 +62,7 @@ export default function Register(props) {
 
   return (
     <div className="loginResPage">
-      {success && <div>{success}</div>}
+      {success && <div className="successNote"></div>}
       <div className="formSection">
         <h2 className="registerHeader">Create your account!</h2>
         <form onSubmit={registerForm} className="registerForm">
