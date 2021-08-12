@@ -14,9 +14,9 @@ export default function Post() {
     console.log(image);
   }, [image]);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     console.log(url);
-  }, [url]); */
+  }, [url]);
 
   const uploadImageAndPost = async (e) => {
     const formData = new FormData();
@@ -118,15 +118,32 @@ export default function Post() {
               required
             />
           </label>
-          <label>
-            Image Upload:
+          <label className="addImg">
             <input
               type="file"
+              style={{ display: "none" }}
               onChange={(e) => {
                 let files = e.target.files;
                 setImage(files[0]);
+                setUrl(URL.createObjectURL(files[0]));
               }}
-            ></input>
+            />
+            <img
+              className="imgPreview"
+              src={url}
+              alt=""
+              style={{
+                width: url === "" ? "20rem" : "inherit",
+                height: url === "" ? "20rem" : "inherit",
+                backgroundImage:
+                  "url(" +
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Regent%27s_Park_bandstand.jpg/1200px-Regent%27s_Park_bandstand.jpg" +
+                  ")",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                border: "none",
+              }}
+            />
           </label>
 
           <label>

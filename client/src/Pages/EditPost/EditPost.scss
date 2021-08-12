@@ -1,0 +1,28 @@
+.addImg {
+  position: relative;
+  height: 20.4rem;
+}
+
+.addImg::after {
+  content: "Upload Image";
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  width: 12rem;
+  height: 3.4rem;
+  padding: 0.9rem;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  background-color: rgba(167, 44, 167, 1);
+  cursor: pointer;
+}
+
+.imgPreview {
+  display: block;
+  position: absolute;
+  left: 0rem;
+  top: 6.5rem;
+  max-height: 13.4rem;
+}

@@ -24,6 +24,7 @@ export default function EditPost() {
       setPost(postData.data);
       setContent(postData.data.content);
       setLoading(false);
+      setUrl(postData.data.coverImage);
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -38,9 +39,9 @@ export default function EditPost() {
     console.log(image);
   }, [image]);
 
-  /*  useEffect(() => {
+  useEffect(() => {
     console.log(url);
-  }, [url]); */
+  }, [url]);
 
   const uploadImageAndPost = async (e) => {
     const formData = new FormData();
@@ -124,17 +125,19 @@ export default function EditPost() {
                 className="emailBox"
               />
             </label>
-            <label>
-              Image Upload:
-              <img id="output" src="" />
+            <label className="addImg">
               <input
                 type="file"
+                style={{ display: "none" }}
                 onChange={(e) => {
                   let files = e.target.files;
                   setImage(files[0]);
+                  setUrl(URL.createObjectURL(files[0]));
                 }}
               />
+              <img className="imgPreview" src={url} alt="" />
             </label>
+
             <label>
               Content:
               <textarea
