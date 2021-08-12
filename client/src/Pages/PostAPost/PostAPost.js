@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import baseURL from "../../config/baseURL";
 import "./PostAPost.scss";
@@ -9,6 +9,14 @@ export default function Post() {
 
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
+
+  /*  useEffect(() => {
+    console.log(url);
+  }, [url]); */
 
   const uploadImageAndPost = async (e) => {
     const formData = new FormData();
@@ -22,11 +30,14 @@ export default function Post() {
     )
       .then((res) => res.json())
       .then(async (res) => {
+        console.log(res);
         setUrl(res.secure_url);
+        // is not updated on time like it was happening with $image
+        console.log(url);
         const post = {
           title: e.target.title.value,
           category: e.target.category.value,
-          coverImage: url,
+          coverImage: res.secure_url,
           content: e.target.content.value,
         };
         console.log(post);
@@ -41,7 +52,7 @@ export default function Post() {
             setSuccess("posted successfully, redirect in 3 seconds");
             setTimeout(() => {
               window.location.replace("/posts");
-            }, 3000);
+            }, 1000);
           }
           console.log("res => ", res.data);
         } catch (err) {
@@ -112,9 +123,8 @@ export default function Post() {
             <input
               type="file"
               onChange={(e) => {
-                setImage(e.target.files[0]);
-                console.log(image);
-                console.log(e.target.files[0]);
+                let files = e.target.files;
+                setImage(files[0]);
               }}
             ></input>
           </label>

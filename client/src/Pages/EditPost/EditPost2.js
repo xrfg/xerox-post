@@ -15,8 +15,68 @@ export default function EditPost() {
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
 
-  let { id } = useParams();
+  useEffect(() => {
+    console.log(image);
+  }, [image]);
 
+  useEffect(() => {
+    console.log(url);
+  }, [url]);
+
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", "xeroxtry");
+    formData.append("cloud_name", "xeroxcloud");
+    const options = { method: "POST", body: formData };
+    return fetch(
+      "https://api.cloudinary.com/v1_1/xeroxcloud/image/upload",
+      options
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setUrl(res.secure_url);
+        console.log(url);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  let { id } = useParams();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    await uploadImage();
+    const title = e.target.title.value;
+    const coverImage = url;
+    const category = e.target.category.value;
+    const postData = {
+      content,
+      category,
+      coverImage,
+      title,
+    };
+
+    console.log("postData ==> ", postData);
+    try {
+      const res = await axios.post(
+        baseURL + "/posts/edit/" + post._id,
+        postData
+      );
+      if (res.data.error) {
+        setError(res.data.error);
+        setSuccess(null);
+      } else {
+        setError(null);
+        setSuccess("the post Edited successfully, redirect in 1s");
+        /* setTimeout(() => {
+          window.location.replace("/posts");
+        }, 1000); */
+      }
+      console.log("RES ==> ", res.data);
+    } catch (e) {
+      console.log(e);
+    }
+    // POST req  ==> http://localhost:5000/api/v1/signup
+  };
   const getPost = async () => {
     setLoading(true);
     try {
@@ -29,72 +89,15 @@ export default function EditPost() {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     getPost();
   }, []);
 
-  useEffect(() => {
-    console.log(image);
-  }, [image]);
-
-  /*  useEffect(() => {
-    console.log(url);
-  }, [url]); */
-
-  const uploadImageAndPost = async (e) => {
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", "xeroxtry");
-    formData.append("cloud_name", "xeroxcloud");
-    const options = { method: "POST", body: formData };
-    return fetch(
-      "https://api.cloudinary.com/v1_1/xeroxcloud/image/upload",
-      options
-    )
-      .then((res) => res.json())
-      .then(async (res) => {
-        console.log(res);
-        setUrl(res.secure_url);
-        // is not updated on time like it was happening with $image
-        console.log(url);
-        const editedPost = {
-          title: e.target.title.value,
-          category: e.target.category.value,
-          coverImage: res.secure_url,
-          content: e.target.content.value,
-        };
-        console.log(post);
-
-        try {
-          const res = await axios.post(
-            baseURL + "/posts/edit/" + post._id,
-            editedPost
-          );
-          if (res.data.error) {
-            setError(res.data.error);
-            setSuccess(null);
-          } else {
-            setError(null);
-            setSuccess("posted edited successfully, redirect in 1s");
-            setTimeout(() => {
-              window.location.replace("/posts");
-            }, 1000);
-          }
-          console.log("res => ", res.data);
-        } catch (e) {
-          console.log(e);
-          setLoading(false);
-        }
-      });
-    /* .catch((err) => console.log(err)); */
-  };
-
   const submitPost = async (e) => {
     e.preventDefault();
-    await uploadImageAndPost(e);
+    await uploadImage(e);
+    submitHandler();
   };
-
   console.log(post);
   return (
     <div className="createPostPage">
