@@ -1,17 +1,40 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MyContext from "../../context/MyContext";
 import "./Home.scss";
+import axios from "axios";
+import baseURL from "../../config/baseURL";
 
 export default function Home(props) {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { setUserEmail } = useContext(MyContext);
+  const [running, setRunning] = useState(true);
+
   const inputVal = useRef("");
 
   function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
+
+  const getPosts = async () => {
+    setLoading(true);
+    try {
+      const postData = await axios.get(baseURL + "/posts");
+      setPosts(postData.data);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <div className="homepage">
       <div className="fancyborder"></div>
@@ -47,11 +70,33 @@ export default function Home(props) {
             <span>Get Started</span>
           </button>
         </form>
+
         {error && (
           <div className="infoWarning">
             <span>{error}</span>
           </div>
         )}
+      </div>
+      <div
+        className="homeList"
+        style={{ animationPlayState: running ? "running" : "paused" }}
+      >
+        {posts.map((post) => (
+          <div
+            onMouseOver={() => setRunning(false)}
+            onMouseOut={() => setRunning(true)}
+            className="homeList__card"
+            key={post._id}
+          >
+            <Link to={"/posts/" + post._id}>
+              <div
+                className="homeList__card__img"
+                style={{ backgroundImage: `url(${post.coverImage})` }}
+              ></div>
+              <h4 className="homeList__card__title">{post.title}</h4>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
