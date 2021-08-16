@@ -5,6 +5,7 @@ const cors = require("cors");
 const core = require("./middlewares/security");
 const errorsHandler = require("./middlewares/errors");
 const path = require("path");
+require("dotenv").config();
 
 const postRoutes = require("./routes/postRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -26,15 +27,20 @@ app.use("/api/v1/posts", postRoutes);
 app.use(errorsHandler);
 
 // for deployment
-app.use(express.static(path.join(__dirname, "client", "build")));
+// app.use(express.static(path.join(__dirname, "client", "build")));
 
-/* if (env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
   app.use(express.static("client/build"));
-} */
 
-app.get("*", function (req, res) {
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+/* app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+}); */
 // ends deployment
 
 app.listen(port, () =>
