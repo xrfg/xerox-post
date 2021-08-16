@@ -14,7 +14,7 @@ const app = express();
 app.use(core);
 
 // cors middleware
-// app.use(cors({ origin: "*", exposedHeaders: "x-auth" }));
+app.use(cors({ origin: "*", exposedHeaders: "x-auth" }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
