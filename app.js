@@ -24,10 +24,6 @@ app.use("/api/v1/posts", postRoutes);
 // http://localhost:5000/api/v1/login
 
 // app.use("/posts", auth, postRoutes);
-app.use(errorsHandler);
-
-// for deployment
-// app.use(express.static(path.join(__dirname, "client", "build")));
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder
@@ -38,10 +34,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-/* app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-}); */
-// ends deployment
+app.use(errorsHandler);
 
 app.listen(port, () =>
   console.log(`express server is running on port: ${port}`)
