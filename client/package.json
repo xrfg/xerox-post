@@ -14,7 +14,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_ENV=development react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -25,11 +25,6 @@
       "react-app/jest"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xrfg/xerox-post.git"
-  },
-  "homepage": "https://github.com/xrfg/xerox-post#readme",
   "browserslist": {
     "production": [
       ">0.2%",
